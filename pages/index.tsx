@@ -1,71 +1,229 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import {
+  Box,
+  Button,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { AppProps, Sx } from "../types";
+import { breakpoints } from "../components/theme";
+import Image from "next/image";
+import indexBackground from "../public/index.png";
+import styles from "../styles/Home.module.css";
+import {
+  CraftShop,
+  IndexStep1,
+  IndexStep2,
+  IndexStep3,
+  Logo,
+  WhiteLogo,
+} from "../components/Icons";
+import { ReactNode } from "react";
+
+function Title({ children }: AppProps) {
+  const theme = useTheme();
+  return (
+    <Typography
+      sx={
+        {
+          fontWeight: 700,
+          fontSize: 100,
+          lineHeight: 1.2,
+          color: theme.palette.primary.main,
+          zIndex: 1,
+          textShadow: "2px 2px 5px rgba(255, 255, 255, 0.75)",
+        } as Sx
+      }
+    >
+      {children}
+    </Typography>
+  );
+}
+
+function Block1() {
+  const theme = useTheme();
+  return (
+    <Stack
+      direction={"row"}
+      overflow={"hidden"}
+      sx={
+        {
+          width: 1,
+          height: "calc(100vh - 64px)",
+          position: "relative",
+          backgroundImage: "url(/index.jpg)",
+          backgroundPosition: "center top 23%",
+          [theme.breakpoints.up("xl")]: {
+            backgroundPosition: "center top 44%"
+          },
+          backgroundSize: "cover",
+        } as Sx
+      }
+    >
+      <Stack
+        sx={
+          {
+            py: 2.5,
+            px: 6.25,
+            alignItems: "baseline"
+          } as Sx
+        }
+      >
+        <Title>Bring Your Creativity</Title>
+        <Title>To Reality</Title>
+        <Title>Let More People</Title>
+        <Title>Share it</Title>
+        <Button
+          variant={"contained"}
+          disableElevation
+          sx={
+            {
+              color: "white",
+              lineHeight: 1,
+              px: 7,
+              py: 4.5,
+              borderRadius: 12.5,
+              fontSize: 30,
+              mt: 3,
+              "&:hover": { backgroundColor: theme.palette.primary.main },
+            } as Sx
+          }
+        >
+          <CraftShop></CraftShop>
+        </Button>
+      </Stack>
+    </Stack>
+  );
+}
+
+const containerSx = {
+  width: 1,
+  maxWidth: breakpoints.xl,
+  alignItems: "stretch",
+  px: 11.25,
+} as Sx;
+
+function Block2() {
+  const theme = useTheme();
+  return (
+    <Stack sx={containerSx}>
+      <Stack
+        sx={
+          {
+            pt: 24,
+            pb: 20.5,
+            mt: 12.5,
+            backgroundColor: theme.palette.primary.main,
+            borderRadius: "50px",
+            color: "white",
+            alignItems: "center",
+          } as Sx
+        }
+      >
+        <Stack sx={{ width: "fit-content" } as Sx}>
+          <Typography sx={{ fontSize: 80, fontWeight: 700 } as Sx}>
+            What is &quot;CRAFTSHOP&quot;?
+          </Typography>
+          <Typography
+            sx={
+              {
+                fontSize: 36,
+                fontWeight: 700,
+                lineHeight: "70px",
+                mt: "48px",
+              } as Sx
+            }
+          >
+            CRAFTSHOP bring your art ideas into physical goods. <br />
+            The number of services available is constantly increasing.
+          </Typography>
+          <Stack direction={"row-reverse"} sx={{ mt: 10 } as Sx}>
+            <WhiteLogo></WhiteLogo>
+          </Stack>
+        </Stack>
+      </Stack>
+    </Stack>
+  );
+}
+
+function Block3() {
+  const theme = useTheme();
+  console.log(theme);
+  return (
+    <Stack sx={containerSx}>
+      <Stack
+        spacing={12.5}
+        sx={
+          { py: 16, mt: 12.5, bgcolor: "#F5F5F5", alignItems: "stretch" } as Sx
+        }
+      >
+        <Typography
+          sx={
+            {
+              fontSize: 80,
+              fontWeight: 700,
+              color: "#4B4B4B",
+              textAlign: "center",
+            } as Sx
+          }
+        >
+          Using CraftShop
+        </Typography>
+        <Stack
+          direction={"row"}
+          justifyContent={"space-around"}
+          sx={{ flex: 1 }}
+        >
+          {(
+            [
+              {
+                name: "STEP.1",
+                icon: <IndexStep1></IndexStep1>,
+                description: "Fill order form got offer",
+              },
+              {
+                name: "STEP.2",
+                icon: <IndexStep2></IndexStep2>,
+                description: "Printing book or Making goods",
+              },
+              {
+                name: "STEP.3",
+                icon: <IndexStep3></IndexStep3>,
+                description: "Delivering book",
+              },
+            ] as { name: string; icon: ReactNode; description: string }[]
+          ).map((e) => (
+            <Stack key={e.name} alignItems={"center"}>
+              {e.icon}
+              <Typography sx={{ fontSize: 36, fontWeight: 700, mt: 2.5 } as Sx}>
+                {e.name}
+              </Typography>
+              <Typography sx={{ fontSize: 24 } as Sx}>
+                {e.description}
+              </Typography>
+            </Stack>
+          ))}
+        </Stack>
+      </Stack>
+    </Stack>
+  );
+}
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Generated by create next app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
-  )
+    <Stack
+      sx={
+        {
+          width: 1,
+          alignItems: "center",
+        } as Sx
+      }
+    >
+      <Block1></Block1>
+      <Block2></Block2>
+      <Block3></Block3>
+      <div style={{padding: "40px"}}></div>
+    </Stack>
+  );
 }
