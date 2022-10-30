@@ -28,7 +28,7 @@ function Title({ children }: AppProps) {
       sx={
         {
           fontWeight: 700,
-          fontSize: 120,
+          fontSize: 100,
           lineHeight: 1.2,
           color: theme.palette.primary.main,
           zIndex: 1,
@@ -52,12 +52,12 @@ function Block1() {
           width: 1,
           height: "calc(100vh - 64px)",
           position: "relative",
-          backgroundImage: "url(/index.png)",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
+          backgroundImage: "url(/index.jpg)",
+          backgroundPosition: "center top 23%",
           [theme.breakpoints.up("xl")]: {
-            backgroundPosition: "center top 75%"
-          }
+            backgroundPosition: "center top 44%"
+          },
+          backgroundSize: "cover",
         } as Sx
       }
     >
