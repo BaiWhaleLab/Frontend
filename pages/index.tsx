@@ -50,25 +50,23 @@ function Block1() {
       sx={
         {
           width: 1,
-          maxWidth: breakpoints.k1,
-          maxHeight: "calc(100vh - 64px)",
-          alignItems: "end",
+          height: "calc(100vh - 64px)",
           position: "relative",
+          backgroundImage: "url(/index.png)",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          [theme.breakpoints.up("xl")]: {
+            backgroundPosition: "center top 75%"
+          }
         } as Sx
       }
     >
-      <Image
-        src={indexBackground}
-        alt={"background"}
-        className={styles.img}
-      ></Image>
       <Stack
         sx={
           {
-            position: "absolute",
-            top: "20px",
-            left: "50px",
-            alignItems: "baseline",
+            py: 2.5,
+            px: 6.25,
+            alignItems: "baseline"
           } as Sx
         }
       >
